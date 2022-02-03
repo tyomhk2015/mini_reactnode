@@ -9,15 +9,14 @@ const cheerio = require('cheerio');
 
 const app = express();
 
-const scrappedItems = [];
-
 app.post('/register', async (req, res) => {
   const metaData = {
     url: req.body.url,
     title: null,
     description: null,
     image: null,
-    createdAt: Date.now()
+    createdAt: Date.now(),
+    genre: req.body.genre,
   };
 
   try {
@@ -27,10 +26,11 @@ app.post('/register', async (req, res) => {
     metaData.title = $('meta[property="og:title"]').attr('content');
     metaData.description = $('meta[property="og:description"]').attr('content');
     metaData.image = $('meta[property="og:image"]').attr('content');
+    metaData.image = $('meta[property="og:image"]').attr('content');
   } catch (error) {
     return;
   }
-  scrappedItems.push(metaData);
+
   res.json(metaData);
 });
 

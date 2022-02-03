@@ -18,9 +18,9 @@ function ArticleList({ articles }) {
                 <h2 className='articleListTitle'>{article.title}</h2>
                 <div className='articleListArticleDetailWrapper'>
                   <p>
-                    {new Date(article.createdAt).toString()} | { 77 }件
+                    {new Date(article.createdAt).toDateString()}
                   </p>
-                  <p>＃{'TEMP'}</p>
+                  <p>＃{article.genre}</p>
                 </div>
               </div>
             </li>

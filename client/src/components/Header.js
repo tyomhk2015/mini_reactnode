@@ -1,37 +1,25 @@
-import { dbService } from '../firebase_assets';
-import axios from 'axios';
-import {useState} from 'react';
+import { useState } from 'react';
 
-function Header() {
+function Header({ toggleModal, retrieveUrl }) {
   const [url, setUrl] = useState('');
 
   const updateUrl = (event) => {
     const inputUrl = event.target.value.trim();
     setUrl(inputUrl);
-  }
+  };
 
-  const register = async (event) => {
+  const openModal = async (event) => {
     event.preventDefault();
     if (url.length === 0) return;
-
-    let bookmarkData = {};
-    try {
-      const response = await axios.post(event.target.action, {url: url});
-      bookmarkData = await response.data;
-      await console.log(await bookmarkData);
-    } catch (error) {
-      console.log('Error occured during axios.');
-      throw error;
-    }
-
-    await dbService.collection('bookmarks').add(bookmarkData);
-    event.target.url.value = '';
-  }
+    toggleModal();
+    retrieveUrl(url);
+    setUrl('');
+  };
   return (
     <>
-      <h1 className="head">
+      <h1 className='head'>
         <img src='http://placehold.jp/120x32.png?text=LOGO' alt='LOGO' />
-        <form className='form__url' onSubmit={register} action='/register'>
+        <div className='form__url'>
           <input
             className='input__text'
             type='text'
@@ -40,8 +28,10 @@ function Header() {
             value={url}
             onChange={updateUrl}
           />
-          <button className='input__submit' type='submit'>登録</button>
-        </form>
+          <button className='input__submit' onClick={openModal}>
+            登録
+          </button>
+        </div>
       </h1>
     </>
   );
