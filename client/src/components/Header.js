@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from '../img/logo.svg';
 
 function Header({ toggleModal, retrieveUrl }) {
   const [url, setUrl] = useState('');
@@ -15,10 +16,16 @@ function Header({ toggleModal, retrieveUrl }) {
     retrieveUrl(url);
     setUrl('');
   };
+  const spOpenModal = async (event) => {
+    event.preventDefault();
+    toggleModal();
+  };
   return (
     <>
-      <h1 className='head'>
-        <img src='http://placehold.jp/120x32.png?text=LOGO' alt='LOGO' />
+      <div className='head'>
+        <h1>
+          <img src={Image} alt='LOGO' />
+        </h1>
         <div className='form__url'>
           <input
             className='input__text'
@@ -32,7 +39,10 @@ function Header({ toggleModal, retrieveUrl }) {
             登録
           </button>
         </div>
-      </h1>
+        <div className='menuBtn'>
+          <a href="#" onClick={spOpenModal}></a>
+        </div>
+      </div>
     </>
   );
 }

@@ -8,21 +8,23 @@ function ArticleList({ articles }) {
           return (
             <li key={'articleItem'+index} className='articleListItem'>
               <button onClick={null} className='articleListDeleteBtn'></button>
-              <div
-                className='articleListImgWrapper'
-                style={{
-                  backgroundImage: `url(${article.image})`,
-                }}
-              ></div>
-              <div className='articleListTextWrapper'>
-                <h2 className='articleListTitle'>{article.title}</h2>
-                <div className='articleListArticleDetailWrapper'>
-                  <p>
-                    {new Date(article.createdAt).toDateString()}
-                  </p>
-                  <p>＃{article.genre}</p>
+              <a href={article.url} className="articleListLink" target="_blank">
+                <div
+                  className='articleListImgWrapper'
+                  style={{
+                    backgroundImage: `url(${article.image})`,
+                  }}
+                ></div>
+                <div className='articleListTextWrapper'>
+                  <h2 className='articleListTitle'>{article.title}</h2>
+                  <div className='articleListArticleDetailWrapper'>
+                    <p>
+                      {new Date(article.createdAt).toDateString()}
+                    </p>
+                    <p>＃{article.genre}</p>
+                  </div>
                 </div>
-              </div>
+              </a>
             </li>
           );
         })}

@@ -4,6 +4,12 @@
   justify-content: space-between;
   margin-top: 64px;
 }
+h1 {
+  line-height: 1;
+}
+.menuBtn {
+  display: none;
+}
 .globalnavi {
   display: flex;
   margin-top: 20px;
@@ -15,22 +21,17 @@
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
-  height: 43px;
   cursor: pointer;
-  line-height: 43px;
   text-align: center;
   text-decoration: none;
-  width: 116px; /* width: 120px; */
+  padding: 12px 36px;
 }
-
 .globalnavi > li + li {
   margin-left: 8px;
 }
-
 .globalnavi > li > .active {
   background-color: #0EB784;
 }
-
 .input__text {
   background-color: #FFFFFF;
   border: 1px solid #E0E1E2;
@@ -39,11 +40,9 @@
   padding: 0 12px;
   width: 216px;
 }
-
 .input__text::placeholder {
   color: #E0E1E2;
 }
-
 .input__submit {
   background-color: #0EB784;
   border: none;
@@ -57,8 +56,6 @@
   text-align: center;
   width: 100px;
 }
-
-
 .input_radio {
   -webkit-appearance: none;
   background-color: #FFFFFF;
@@ -71,8 +68,7 @@
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   width: 14px;
 }
-
-.input_radio:checked::after a{
+.input_radio:checked::after a {
   background-color: #0EB784;
   border-radius: 50%;
   content: "";
@@ -83,6 +79,60 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 6px;;
+}
+
+@media (max-width: 768px) {
+  .head {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  h1 > img {
+    width: 75px;
+  }
+  .menuBtn {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 2px;
+  }
+  .menuBtn > a {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    display: block;
+  }
+  .menuBtn > a::before,
+  .menuBtn > a::after {
+    background-color: #0EB784;
+    content: "";
+    display: block;
+    height: 2px;
+    position: absolute;
+    top: 18px;
+    left: 10px;
+    width: 20px;
+  }
+  .menuBtn > a::after {
+    transform: rotate(90deg);
+  }
+  .form__url {
+    display: none;
+  }
+  .globalnavi {
+    display: block;
+    margin: 20px -4px 0;
+    overflow-x: scroll;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .globalnavi > li {
+    margin-left: 4px;
+    display: inline-block;
+  }
+  .globalnavi a {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 }
 
 /* KR */
@@ -99,6 +149,14 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
 }
 .container {
   margin: 0 auto;
@@ -196,6 +254,7 @@ ul {
   }
   .articleList {
     margin-top: 12px;
+    padding: 0 12px 36px;
   }
   .articleListItem {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
