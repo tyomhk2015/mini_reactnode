@@ -12,7 +12,7 @@ function ArticleList({ articles, sendRegisteredData}) {
     <>
       <ul className='articleList'>
         {articles.map((article, index) => {
-          return (
+          return (article.id &&
             <li key={'articleItem'+index} className='articleListItem'>
               <button onClick={deleteArticle} className='articleListDeleteBtn' data-url={article.id}></button>
               <a href={article.url} className="articleListLink" target="_blank">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { dbService } from '../firebase_assets';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import ArticleList from './ArticleList';
@@ -7,7 +7,7 @@ import Navigation from './Navigation';
 const GenreRouter = ({newArticle}) => {
   const [articles, setArticles] = useState([]);
 
-  useEffect(()=>{
+  useLayoutEffect(()=>{
     const querySnapShot = dbService.collection('bookmarks').orderBy('createdAt', 'desc').get();
     querySnapShot.then(querySnapShot => {
       const loadedArticles = querySnapShot.docs.map(doc => {

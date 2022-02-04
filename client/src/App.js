@@ -17,7 +17,8 @@ function App() {
   };
 
   const retrieveRegisteredData = (registeredData) => {
-    setNewArticle((prevState)=> [registeredData, ...prevState]);
+    const addedArticles = [registeredData, ...newArticle];
+    setNewArticle(addedArticles);
   }
 
   return (
