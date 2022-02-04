@@ -4,17 +4,25 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import ArticleList from './ArticleList';
 import Navigation from './Navigation';
 
-const GenreRouter = () => {
+const GenreRouter = ({newArticle}) => {
   const [articles, setArticles] = useState([]);
+
   useEffect(()=>{
     const querySnapShot = dbService.collection('bookmarks').orderBy('createdAt', 'desc').get();
     querySnapShot.then(querySnapShot => {
       const loadedArticles = querySnapShot.docs.map(doc => {
-        return doc.data();
+        return {
+          ...doc.data(),
+          id: doc.id
+        }
       });
-      setArticles(loadedArticles);
+      if(newArticle.length > 0) {
+        setArticles([...newArticle, ...loadedArticles]);
+      } else {
+        setArticles(loadedArticles);
+      }
     })
-  },[]);
+  },[newArticle]);
 
   return (
     <>

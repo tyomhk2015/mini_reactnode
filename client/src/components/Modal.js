@@ -2,7 +2,7 @@ import { dbService } from '../firebase_assets';
 import axios from 'axios';
 import React, { useState } from 'react';
 
-const Modal = ({ toggleModal, isModalOn, userInputUrl}) => {
+const Modal = ({ toggleModal, isModalOn, userInputUrl, retrieveRegisteredData}) => {
   const categories = [
     {
       lable: `ニュース`,
@@ -50,19 +50,20 @@ const Modal = ({ toggleModal, isModalOn, userInputUrl}) => {
     event.preventDefault(); 
     if( genre.length === 0 ) return;
 
-    let bookmarkData = {};
+    let registeredData = {};
 
     try {
       const response = await axios.post(event.target.action, formData);
-      bookmarkData = await response.data;
-      await console.log(await bookmarkData);
+      registeredData = await response.data;
+      await console.log(await registeredData);
+      retrieveRegisteredData(registeredData);
     } catch (error) {
       console.log('Error occured during axios.');
       throw error;
     }
 
     toggleModal();
-    await dbService.collection('bookmarks').add(bookmarkData);
+    await dbService.collection('bookmarks').add(registeredData);
   };
 
   return (

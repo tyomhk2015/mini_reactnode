@@ -1,13 +1,20 @@
+import { dbService } from '../firebase_assets';
 import React from 'react';
 
-function ArticleList({ articles }) {
+function ArticleList({ articles, sendRegisteredData}) {
+
+  const deleteArticle = async (event) => {
+    event.target.parentElement.remove();
+    await dbService.doc(`bookmarks/${event.target.getAttribute('data-url')}`).delete();
+  }
+
   return (
     <>
       <ul className='articleList'>
         {articles.map((article, index) => {
           return (
             <li key={'articleItem'+index} className='articleListItem'>
-              <button onClick={null} className='articleListDeleteBtn'></button>
+              <button onClick={deleteArticle} className='articleListDeleteBtn' data-url={article.id}></button>
               <a href={article.url} className="articleListLink" target="_blank">
                 <div
                   className='articleListImgWrapper'

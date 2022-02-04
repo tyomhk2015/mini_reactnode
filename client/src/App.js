@@ -6,6 +6,7 @@ import Modal from './components/Modal';
 function App() {
   const [modal, setModal] = useState(false);
   const [userInputUrl, setUserInputUrl] = useState('');
+  const [newArticle, setNewArticle] = useState([]);
 
   const toggleModal = () => {
     setModal((prevState) => !prevState);
@@ -15,14 +16,19 @@ function App() {
     setUserInputUrl(userInput);
   };
 
+  const retrieveRegisteredData = (registeredData) => {
+    setNewArticle((prevState)=> [registeredData, ...prevState]);
+  }
+
   return (
     <>
       <Header toggleModal={toggleModal} retrieveUrl={retrieveUrl} />
-      <GenreRouter />
+      <GenreRouter newArticle={newArticle}/>
       <Modal
         toggleModal={toggleModal}
         isModalOn={modal}
         userInputUrl={userInputUrl}
+        retrieveRegisteredData={retrieveRegisteredData}
       />
     </>
   );
