@@ -30,12 +30,18 @@ const Modal = ({ toggleModal, isModalOn, userInputUrl, retrieveRegisteredData}) 
     },
   ];
 
+  const [url, setUrl] = useState('');
   const [genre, setGenre] = useState('');
 
   const formData = {
     url: userInputUrl,
     genre: genre
   }
+
+  const updateUrl = (event) => {
+    const inputUrl = event.target.value.trim();
+    setUrl(inputUrl);
+  };
 
   const getGenre = (event) => {
     setGenre(event.target.value)
@@ -73,9 +79,14 @@ const Modal = ({ toggleModal, isModalOn, userInputUrl, retrieveRegisteredData}) 
     >
       <div className='modal__area'>
         <p className='modal__text'>カテゴリを選んでください</p>
-        <p className='modal__text-url'>
-          {userInputUrl}
-        </p>
+        <input
+            className='input__text'
+            type='text'
+            name='url'
+            placeholder='URL'
+            value={url || userInputUrl}
+            onChange={updateUrl}
+          />
         <form onSubmit={register}  method="POST" action="/register">
           <ul className='modal__item'>
             {categories.map((category) => {
