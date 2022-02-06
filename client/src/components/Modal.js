@@ -79,14 +79,6 @@ const Modal = ({ toggleModal, isModalOn, userInputUrl, retrieveRegisteredData}) 
     >
       <div className='modal__area'>
         <p className='modal__text'>カテゴリを選んでください</p>
-        <input
-            className='input__text'
-            type='text'
-            name='url'
-            placeholder='URL'
-            value={url || userInputUrl}
-            onChange={updateUrl}
-          />
         <form onSubmit={register}  method="POST" action="/register">
           <ul className='modal__item'>
             {categories.map((category) => {
@@ -106,8 +98,18 @@ const Modal = ({ toggleModal, isModalOn, userInputUrl, retrieveRegisteredData}) 
               );
             })}
           </ul>
-          <button className='modal__submit' type='submit'>登録</button>
-          <input type="hidden" name="url" value={userInputUrl} />
+          <div className='modal__form__url'>
+            <input
+              className='input__text'
+              type='text'
+              name='url'
+              placeholder='URL'
+              value={url || userInputUrl}
+              onChange={updateUrl}
+            />
+            <button className='modal__submit' type='submit'>登録</button>
+            <input type="hidden" name="url" value={userInputUrl} />
+          </div>
         </form>
       </div>
     </div>

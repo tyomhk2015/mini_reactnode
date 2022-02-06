@@ -40,7 +40,7 @@ function Header({ toggleModal, retrieveUrl }) {
           </button>
         </div>
         <div className='menuBtn'>
-          <a href="#" onClick={spOpenModal}></a>
+          <button onClick={spOpenModal}></button>
         </div>
       </div>
     </>
